@@ -1,4 +1,6 @@
-class ext {
+(function(Scratch) {
+  'use strict';
+  class ext {
     constructor(runtime, id) {
         //ext stuff
         this.runtime = runtime;
@@ -39,27 +41,7 @@ class ext {
                 console.error(e)
             }
         }
-    }// major credit to CST for this (I did modify it some to allow sandboxed if you only want the speed boost (:
-	const extensionClass = YourExt;
-	if (Scratch) {
-		if (Scratch.extensions.unsandboxed) {
-			Scratch.extensions.register(new extensionClass(Scratch.vm));
-		} else {
-                        // comment out if you use VM things
-			Scratch.extensions.register(new extensionClass());
-                        // throw new Error("YourExt cannot run in sandboxed mode.");
-		} 
-	} else if (globalThis.vm) {
-		// Support loading the extension "the old way"
-		// (running the code in something like the browser console
-		// or E羊icques' load_plugin URL parameter)
-		const extensionInstance = new extensionClass(globalThis.vm);
-		const serviceName = globalThis.vm.extensionManager._registerInternalExtension(
-			extensionInstance
-		);
-		globalThis.vm.extensionManager._loadedExtensions.set(
-			extensionInstance.getInfo().id, serviceName
-		); 
-	} else {
-		throw new Error("Scratch Not detected"); // no idea if there is anything else i can do here
-	};
+    }
+  }
+  Scratch.extensions.register(new MyExtension());
+})(Scratch);
