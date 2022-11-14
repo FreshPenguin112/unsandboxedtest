@@ -43,5 +43,5 @@
         }
     }
   }
-  Scratch.extensions.register(new MyExtension());
+  Scratch.extensions.register(new ext());
 })(Scratch);
